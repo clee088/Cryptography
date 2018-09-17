@@ -18,15 +18,15 @@ def prompt():
         if i == 'e' or i == 'd' or i == 'q':
             msg = input('Message: ')
             key = input('Key: ')
-            if len(msg) > len(key):
+            if len(msg) < len(key):
                 for l in msg:
                     (associations.find(l) + associations.find(key))
             else:
                 for l in msg:
+                    print(associations.find(l))
+                    print(associations.find(key))
                     ekey = (associations.find(l) + associations.find(key))
-                for e in ekey:
-                    k = associations[e]
-                print(k)
+                    print(associations[ekey])
         else:
             print('Did not understand command, try again.')
             prompt()
