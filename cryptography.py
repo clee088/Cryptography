@@ -12,20 +12,27 @@ See the detailed requirements at https://github.com/HHS-IntroProgramming/Cryptog
 associations = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 .,:;'\"/\\<>(){}[]-=_+?!"
 
 
+
 def prompt():
     ask = str(input("Enter e to encrypt, d to decrypt, or q to quit: "))
     for i in ask:
-        if i == 'e' or i == 'd' or i == 'q':
+        if i == 'e':
             msg = input('Message: ')
             key = input('Key: ')
-            for l in msg:
-                x = associations.find(l)
-                print(x)
+            p = ''
             for k in key:
                 y = associations.find(k)
-                print(y)
             for l in msg:
-                print(associations.find(l) + associations(k))
+                xy = associations[associations.find(l)+ associations.find(k)]
+                p += str(xy)
+            print(p)
+            prompt()
+        elif i == 'd':
+            msg = input('Message: ')
+            key = input('Key: ')
+            
+        elif i == 'q':
+            print('Goodbye!')
         else:
             print('Did not understand command, try again.')
             prompt()
