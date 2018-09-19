@@ -35,8 +35,11 @@ def prompt():
                 else:
                     for k in key:
                         y = associations.find(k)
-                xy = associations[x+y]
-                #if xy > len(associations):
+                xy = x+y
+                if xy > len(associations):
+                    xy = associations[xy - len(associations)]
+                else:
+                    xy = associations[xy]
                 p += str(xy)
             print(p)
             prompt()
