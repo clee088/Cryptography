@@ -19,7 +19,7 @@ def prompt():
         if i == 'e':
             msg = input('Message: ')
             key = input('Key: ')
-            p = ''
+            p = '' #print
             kk = ''
             kk += key
             for l in msg:
@@ -27,15 +27,15 @@ def prompt():
                 if len(msg) > len(kk):
                     while True:
                         kk += key
-                        if len(kk) > len(msg):
+                        if len(kk) >= len(msg):
                             break
                     for k in kk:
                         y = associations.find(k)
+                    print(kk)
                 else:
                     for k in key:
                         y = associations.find(k)
-                        
-                xy = associations[x+associations.find(k)]
+                xy = associations[x+y]
                 #if xy > len(associations):
                 p += str(xy)
             print(p)
