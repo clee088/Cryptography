@@ -16,33 +16,30 @@ associations = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 .
 def prompt():
     ask = str(input("Enter e to encrypt, d to decrypt, or q to quit: "))
     for i in ask:
+#Encrypt
         if i == 'e':
             msg = input('Message: ')
             key = input('Key: ')
             p = '' #print
             kk = ''
             kk += key
-            for l in msg:
-                x = associations.find(l)
-                if len(msg) > len(kk):
+            if len(msg) > len(key):
                     while True:
                         kk += key
                         if len(kk) >= len(msg):
                             break
-                    for k in kk:
-                        y = associations.find(k)
-                    print(kk)
-                else:
-                    for k in key:
-                        y = associations.find(k)
-                xy = x+y
+            for l in msg:
+                x = associations.find(l)
+                for k in key:
+                    y = associations.find(k)
+                    xy = x+y
                 if xy > len(associations):
                     xy = associations[xy - len(associations)]
-                else:
-                    xy = associations[xy]
-                p += str(xy)
+                print(xy)
+                p += associations[xy]
             print(p)
             prompt()
+#Decrypt
         elif i == 'd':
             msg = input('Message: ')
             key = input('Key: ')
@@ -55,8 +52,10 @@ def prompt():
                 p += str(xy)
             print(p)
             prompt()
+#Quit
         elif i == 'q':
             print('Goodbye!')
+#Invalid Input
         else:
             print('Did not understand command, try again.')
             prompt()
