@@ -36,13 +36,16 @@ def prompt():
         elif i == 'd':
             msg = input('Message: ')
             key = input('Key: ')
-            p = ''
-            for l in msg:
-                x = associations.find(l)
-                for k in key:
-                    y = associations.find(k)
-                xy = associations[x-y]
-                p += str(xy)
+            kk = ''
+            if len(msg) > len(key):
+                    while True:
+                        kk += key
+                        if len(kk) >= len(msg):
+                            break
+            m = [associations.find(l) for l in msg]
+            k = [associations.find(k) for k in kk]
+            mm = [m - k for m, k in zip(m, k)]
+            p = ''.join([associations[i % len(associations)] for i in mm])
             print(p)
             prompt()
 #Quit
