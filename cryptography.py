@@ -1,7 +1,7 @@
 """
 cryptography.py
 Author: Christopher Lee
-Credit: <list sources used, if any>
+Credit: https://stackoverflow.com/questions/14050824/add-sum-of-values-of-two-lists-into-new-list
 
 Assignment:
 
@@ -20,23 +20,16 @@ def prompt():
         if i == 'e':
             msg = input('Message: ')
             key = input('Key: ')
-            p = '' #print
             kk = ''
-            kk += key
             if len(msg) > len(key):
                     while True:
                         kk += key
                         if len(kk) >= len(msg):
                             break
-            for l in msg:
-                x = associations.find(l)
-                for k in key:
-                    y = associations.find(k)
-                    xy = x+y
-                if xy > len(associations):
-                    xy = associations[xy - len(associations)]
-                print(xy)
-                p += associations[xy]
+            m = [associations.find(l) for l in msg]
+            k = [associations.find(k) for k in kk]
+            mm = [m + k for m, k in zip(m, k)]
+            p = ''.join([associations[i % len(associations)] for i in mm])
             print(p)
             prompt()
 #Decrypt
@@ -48,7 +41,7 @@ def prompt():
                 x = associations.find(l)
                 for k in key:
                     y = associations.find(k)
-                xy = associations[x-associations.find(k)]
+                xy = associations[x-y]
                 p += str(xy)
             print(p)
             prompt()
